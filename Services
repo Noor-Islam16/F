@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service - Webgrity</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #e8f0f2 0%, #f5f8fa 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 600px;
+        }
+
+        .left-side {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: #90caf9;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+            min-height: 400px;
+        }
+
+        .right-side {
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f8f9fa;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #6c757d;
+            font-size: 18px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #8b4513;
+            display: inline-block;
+        }
+
+        .content {
+            margin-top: 30px;
+        }
+
+        .content p {
+            color: #495057;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .team-link {
+            color: #5a6c7d;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .team-link:hover {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .right-side {
+                padding: 50px 60px;
+            }
+
+            h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .service-section {
+                grid-template-columns: 1fr;
+            }
+
+            .left-side {
+                min-height: 400px;
+            }
+
+            .right-side {
+                padding: 50px 40px;
+            }
+
+            h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .left-side {
+                min-height: 300px;
+                padding: 20px;
+            }
+
+            .right-side {
+                padding: 40px 30px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            .content p {
+                font-size: 15px;
+            }
+
+            .image-placeholder {
+                min-height: 250px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .right-side {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 28px;
+                letter-spacing: 1px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .content p {
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .image-placeholder {
+                min-height: 200px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="service-section">
+            <div class="left-side">
+                <div class="image-placeholder">
+                    [Image Placeholder - Team Meeting/Presentation]
+                </div>
+            </div>
+            
+            <div class="right-side">
+                <h1>SERVICE</h1>
+                <span class="subtitle">Lorem ipsum dolor sit amet consectetur adipisicing elit</span>
+                
+                <div class="content">
+                    <p>
+                        Webgrity is fusion of two words "Web" and "Integrity". We have been in this 
+                        business for almost a decade and through out this journey we have always 
+                        maintained integrity in all aspects of our company behavior.
+                    </p>
+                    
+                    <p>
+                        While working on this web site we referred to a number of competing web 
+                        sites and found all of them to be flooded with age old banality of words 
+                        such as "professional", "State of art technology", "Competent", "Leading 
+                        provider", "...team of experienced professionals...", "We do this...", "We 
+                        are..." etc. However, in this site, we decided to give the site visitors a BREAK, 
+                        with more of a Visual Tour, rather than Wizardry of words. En route, do not 
+                        miss to meet our <a href="#" class="team-link">Team Members</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
