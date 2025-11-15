@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Trial Offer</title>
+    <style>
+        @font-face {
+            font-family: HoneyScript;
+            src: url('/assets/Fonts/HoneyScript-Light.ttf');
+        }
+        
+        @font-face {
+            font-family: BM;
+            src: url('/assets/Fonts/Brandon_med.otf');
+        }
+        
+        @font-face {
+            font-family: Opensans;
+            src: url('/assets/Fonts/OpenSans-Regular.ttf');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            overflow: hidden;
+        }
+        
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            opacity: 1;
+        }
+        
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.3), rgba(255, 255, 255, 0.1));
+            z-index: 1;
+        }
+        
+        .slide-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .content-box {
+            position: absolute;
+            right: 8%;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 50px 0px;
+            max-width: 550px;
+            z-index: 2;
+        }
+        
+        .content-box h1 {
+            color: #CB1F27;
+            font-size: 47px;
+            font-family: "BM";
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .you-get-wrapper {
+            position: relative;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+        
+        .you-get {
+            position: absolute;
+            left: -60px;
+            top: 43%;
+            transform: translateY(-50%) rotate(-22deg);
+            transform-origin: left center;
+            color: #0757A7;
+            font-size: 38px;
+            font-family: "HoneyScript";
+            white-space: nowrap;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px 8px;
+            margin-bottom: 35px;
+            margin-left: 6px;
+        }
+        
+        .feature-item {
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            font-family: "Opensans";
+        }
+        
+        .feature-item::before {
+            content: '•';
+            color: #0857A7;
+            font-size: 16px;
+            margin-right: 4px;
+            font-family: "Opensans";
+        }
+        
+        .cta-button {
+            background: #0857A7;
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 24px;
+            font-family: "Opensans";
+            cursor: pointer;
+            width: 80%;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #152a6b;
+        }
+        
+        .carousel-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 3;
+        }
+        
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #CACACA;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            /* border: 2px solid white; */
+        }
+        
+        .dot.active {
+            background: #CB2026;
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 1024px) {
+            .content-box {
+                right: 5%;
+                padding: 40px 45px;
+                max-width: 480px;
+            }
+            .content-box h1 {
+                font-size: 36px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .content-box {
+                right: 50%;
+                transform: translate(50%, -50%);
+                padding: 30px 35px;
+                max-width: 90%;
+            }
+            .content-box h1 {
+                font-size: 30px;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-container">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active">
+            <img src="/assets/banner 1.png" alt="Business Person" class="slide-background">
+            <div class="content-box">
+                <h1>FREE TRIAL OFFER</h1>
+                <!-- <div class="you-get-wrapper"> -->
+                <div class="you-get">You get</div>
+                <!-- </div> -->
+
+                <div class="features">
+                    <div class="feature-item">Customized Homepage Layouts</div>
+                    <div class="feature-item">Your Copyright Ownership</div>
+                    <div class="feature-item">No Templates</div>
+                    <div class="feature-item">No Charges</div>
+                    <div class="feature-item">Unlimited Revisions</div>
+                </div>
+                <button class="cta-button">GET A FREE QUOTE TODAY</button>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide">
+            <img src="https://plus.unsplash.com/premium_photo-1672691612619-29301d9aafac?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Professional Woman" class="slide-background">
+            <div class="content-box">
+                <h1>FREE TRIAL OFFER</h1>
+                <div class="you-get">You get</div>
+                <div class="features">
+                    <div class="feature-item">Customized Homepage Layouts</div>
+                    <div class="feature-item">Your Copyright Ownership</div>
+                    <div class="feature-item">No Templates</div>
+                    <div class="feature-item">No Charges</div>
+                    <div class="feature-item">Unlimited Revisions</div>
+                </div>
+                <button class="cta-button">GET A FREE QUOTE TODAY</button>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1920&h=1080&fit=crop" alt="Business Man" class="slide-background">
+            <div class="content-box">
+                <h1>FREE TRIAL OFFER</h1>
+                <div class="you-get">You get</div>
+                <div class="features">
+                    <div class="feature-item">Customized Homepage Layouts</div>
+                    <div class="feature-item">Your Copyright Ownership</div>
+                    <div class="feature-item">No Templates</div>
+                    <div class="feature-item">No Charges</div>
+                    <div class="feature-item">Unlimited Revisions</div>
+                </div>
+                <button class="cta-button">GET A FREE QUOTE TODAY</button>
+            </div>
+        </div>
+
+        <!-- Carousel Dots -->
+        <div class="carousel-dots">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        let autoPlayInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function currentSlide(index) {
+            currentIndex = index;
+            showSlide(currentIndex);
+            resetAutoPlay();
+        }
+
+        function resetAutoPlay() {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Auto-play carousel every 5 seconds
+        autoPlayInterval = setInterval(nextSlide, 5000);
+
+        // Add click event to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Thank you for your interest! This would redirect to a contact form.');
+            });
+        });
+    </script>
+</body>
+
+</html>
