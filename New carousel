@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Trial Offer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 100%;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide-1 {
+            background: linear-gradient(to right, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.7) 100%), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23e8f4f8" width="1200" height="800"/></svg>');
+        }
+
+        .slide-content {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 50px;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .image-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .person-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .content-section {
+            flex: 1;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+        }
+
+        .offer-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #e63946;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .you-get-text {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 32px;
+            color: #1e5f8c;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px 30px;
+            margin-bottom: 35px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .bullet {
+            width: 8px;
+            height: 8px;
+            background-color: #1e5f8c;
+            border-radius: 50%;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            background-color: #1e5f8c;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .cta-button:hover {
+            background-color: #164a6b;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ccc;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #e63946;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-nav:hover {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .slide-content {
+                flex-direction: column;
+                padding: 30px;
+                gap: 30px;
+            }
+
+            .offer-title {
+                font-size: 36px;
+            }
+
+            .you-get-text {
+                font-size: 26px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .slide-content {
+                padding: 20px;
+            }
+
+            .offer-title {
+                font-size: 28px;
+            }
+
+            .you-get-text {
+                font-size: 22px;
+            }
+
+            .feature-item {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 16px;
+            }
+
+            .carousel-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .person-image {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel-container">
+        <div class="carousel-slides" id="carouselSlides">
+            <!-- Slide 1 -->
+            <div class="slide slide-1">
+                <div class="slide-content">
+                    <div class="image-section">
+                        <div class="person-image">
+                            📱 Professional on Phone<br>
+                            <small style="font-size: 14px; margin-top: 10px; display: block;">
+                                (Replace with actual image:<br>
+                                &lt;img src="your-image.jpg" style="width:100%; height:100%; object-fit:cover; border-radius:10px;"&gt;)
+                            </small>
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h1 class="offer-title">FREE TRIAL OFFER</h1>
+                        <div class="you-get-text">You get</div>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Customized Homepage Layouts</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Your Copyright Ownership</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>No Templates</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>No Charges</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Unlimited Revisions</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">GET A FREE QUOTE TODAY</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide slide-1">
+                <div class="slide-content">
+                    <div class="image-section">
+                        <div class="person-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                            💼 Business Solutions<br>
+                            <small style="font-size: 14px; margin-top: 10px; display: block;">Slide 2</small>
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h1 class="offer-title">PREMIUM PACKAGE</h1>
+                        <div class="you-get-text">You get</div>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Advanced Analytics</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>24/7 Support</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Custom Integrations</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Priority Updates</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Team Collaboration</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">GET STARTED NOW</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide slide-1">
+                <div class="slide-content">
+                    <div class="image-section">
+                        <div class="person-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                            🚀 Launch Your Project<br>
+                            <small style="font-size: 14px; margin-top: 10px; display: block;">Slide 3</small>
+                        </div>
+                    </div>
+                    <div class="content-section">
+                        <h1 class="offer-title">ENTERPRISE SOLUTION</h1>
+                        <div class="you-get-text">You get</div>
+                        <div class="features-grid">
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Dedicated Account Manager</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Custom Development</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>SLA Guarantees</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>White Label Options</span>
+                            </div>
+                            <div class="feature-item">
+                                <span class="bullet"></span>
+                                <span>Scalable Infrastructure</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">CONTACT SALES TEAM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="carousel-nav prev" onclick="moveSlide(-1)">‹</button>
+        <button class="carousel-nav next" onclick="moveSlide(1)">›</button>
+
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const slidesContainer = document.getElementById('carouselSlides');
+
+        function updateCarousel() {
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            } else if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+            
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel
+        let autoPlay = setInterval(() => {
+            moveSlide(1);
+        }, 5000);
+
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlay);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoPlay = setInterval(() => {
+                moveSlide(1);
+            }, 5000);
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                moveSlide(1);
+            }
+            if (touchEndX > touchStartX + 50) {
+                moveSlide(-1);
+            }
+        }
+    </script>
+</body>
+</html>
