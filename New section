@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webgrity Machine Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .navbar {
+            background-color: #fff;
+            padding: 15px 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-container {
+            max-width: 1920px;
+            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .cta-button {
+            background-color: #1e40af;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #1e3a8a;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                background-color: #fff;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 30px;
+                gap: 20px;
+                transition: right 0.3s ease;
+                box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo img {
+                height: 35px;
+            }
+            .navbar {
+                padding: 12px 15px;
+            }
+        }
+
+        /* Carousel Section Styles */
+        .carousel-section {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+        }
+
+        .carousel-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            width: 100%;
+            padding: 0 80px;
+            gap: 60px;
+        }
+
+        .carousel-image {
+            flex: 0 0 45%;
+            max-width: 500px;
+        }
+
+        .carousel-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-text {
+            flex: 1;
+            background-color: #fff;
+            padding: 50px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .carousel-title {
+            color: #b91c1c;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .offer-details {
+            margin-bottom: 40px;
+        }
+
+        .handwritten {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 32px;
+            color: #1e40af;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .features-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .features-list li::before {
+            content: "•";
+            position: absolute;
+            left: 8px;
+            color: #1e40af;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .features-list.right {
+            margin-top: 0;
+        }
+
+        .carousel-cta {
+            background-color: #1e40af;
+            color: white;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .carousel-cta:hover {
+            background-color: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        /* Carousel Controls */
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #1e40af;
+            border: none;
+            font-size: 48px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .carousel-control:hover {
+            background-color: #1e40af;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-control.prev {
+            left: 30px;
+        }
+
+        .carousel-control.next {
+            right: 30px;
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #1e40af;
+        }
+
+        .indicator.active {
+            background-color: #b91c1c;
+            transform: scale(1.2);
+        }
+
+        .indicator:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .carousel-content {
+                padding: 0 40px;
+                gap: 40px;
+            }
+
+            .carousel-text {
+                padding: 40px 45px;
+            }
+
+            .carousel-title {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .carousel-container {
+                height: auto;
+                min-height: 600px;
+            }
+
+            .carousel-content {
+                flex-direction: column;
+                padding: 40px 30px;
+                gap: 30px;
+            }
+
+            .carousel-image {
+                flex: 0 0 auto;
+                max-width: 100%;
+            }
+
+            .carousel-text {
+                padding: 35px 30px;
+            }
+
+            .carousel-title {
+                font-size: 36px;
+                text-align: center;
+            }
+
+            .handwritten {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .carousel-cta {
+                width: 100%;
+                padding: 16px 35px;
+            }
+
+            .carousel-control {
+                width: 50px;
+                height: 50px;
+                font-size: 36px;
+            }
+
+            .carousel-control.prev {
+                left: 15px;
+            }
+
+            .carousel-control.next {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .carousel-content {
+                padding: 30px 20px;
+            }
+
+            .carousel-text {
+                padding: 30px 25px;
+            }
+
+            .carousel-title {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .handwritten {
+                font-size: 24px;
+            }
+
+            .features-list li {
+                font-size: 16px;
+            }
+
+            .carousel-cta {
+                padding: 14px 30px;
+                font-size: 14px;
+            }
+
+            .carousel-control {
+                width: 40px;
+                height: 40px;
+                font-size: 28px;
+            }
+
+            .carousel-control.prev {
+                left: 10px;
+            }
+
+            .carousel-control.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="/assets/logo.svg" alt="Webgrity Logo">
+        </div>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#service">Service</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><button class="cta-button">Get a Free Quote Today</button></li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    </nav>
+
+    <!-- Carousel Section -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide active">
+                <div class="carousel-content">
+                    <div class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop" alt="Professional on phone">
+                    </div>
+                    <div class="carousel-text">
+                        <h1 class="carousel-title">FREE TRIAL OFFER</h1>
+                        <div class="offer-details">
+                            <p class="handwritten">You get:</p>
+                            <ul class="features-list">
+                                <li>Customized Homepage Layouts</li>
+                                <li>No Templates</li>
+                                <li>Unlimited Revisions</li>
+                            </ul>
+                            <ul class="features-list right">
+                                <li>Your Copyright Ownership</li>
+                                <li>No Charges</li>
+                            </ul>
+                        </div>
+                        <button class="carousel-cta">GET A FREE QUOTE TODAY</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <div class="carousel-content">
+                    <div class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop" alt="Professional woman">
+                    </div>
+                    <div class="carousel-text">
+                        <h1 class="carousel-title">FREE TRIAL OFFER</h1>
+                        <div class="offer-details">
+                            <p class="handwritten">You get:</p>
+                            <ul class="features-list">
+                                <li>Customized Homepage Layouts</li>
+                                <li>No Templates</li>
+                                <li>Unlimited Revisions</li>
+                            </ul>
+                            <ul class="features-list right">
+                                <li>Your Copyright Ownership</li>
+                                <li>No Charges</li>
+                            </ul>
+                        </div>
+                        <button class="carousel-cta">GET A FREE QUOTE TODAY</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide">
+                <div class="carousel-content">
+                    <div class="carousel-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=600&fit=crop" alt="Professional team">
+                    </div>
+                    <div class="carousel-text">
+                        <h1 class="carousel-title">FREE TRIAL OFFER</h1>
+                        <div class="offer-details">
+                            <p class="handwritten">You get:</p>
+                            <ul class="features-list">
+                                <li>Customized Homepage Layouts</li>
+                                <li>No Templates</li>
+                                <li>Unlimited Revisions</li>
+                            </ul>
+                            <ul class="features-list right">
+                                <li>Your Copyright Ownership</li>
+                                <li>No Charges</li>
+                            </ul>
+                        </div>
+                        <button class="carousel-cta">GET A FREE QUOTE TODAY</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Controls -->
+            <button class="carousel-control prev" onclick="changeSlide(-1)">‹</button>
+            <button class="carousel-control next" onclick="changeSlide(1)">›</button>
+
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <span class="indicator active" onclick="goToSlide(0)"></span>
+                <span class="indicator" onclick="goToSlide(1)"></span>
+                <span class="indicator" onclick="goToSlide(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            }
+        });
+
+        // Close menu when clicking on a link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            indicators[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // Auto-play carousel (changes every 5 seconds)
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+</body>
+
+</html>
